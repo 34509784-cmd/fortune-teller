@@ -1,7 +1,7 @@
 {
   "framework": "vite",
-  "installCommand": "cd ../.. && pnpm install --no-frozen-lockfile",
-  "buildCommand": "cd ../.. && pnpm run build",
+  "installCommand": "npm install",
+  "buildCommand": "npx vite build",
   "outputDirectory": "dist",
   "routes": [
     { "handle": "filesystem" },
