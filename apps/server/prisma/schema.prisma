@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ========== User ==========
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  passwordHash  String
+  name          String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  baziReadings    BaziReading[]
+  baguaReadings   BaguaReading[]
+  qimenReadings   QimenReading[]
+  zodiacReadings  ZodiacReading[]
+}
+
+// ========== Ba Zi ==========
+model BaziReading {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  birthDate    String
+  birthTime    String
+  longitude    Float
+  latitude     Float
+  gender       String
+  calendarType String
+
+  fourPillars      String  // JSON string
+  dayMaster        String
+  tenGods          String  // JSON string
+  fiveElements     String  // JSON string
+  daYun            String  // JSON string
+  shenSha          String? // JSON string
+  naYin            String? // JSON string
+  elementBalance   String? // JSON string
+
+  readingText String?
+
+  createdAt   DateTime @default(now())
+}
+
+// ========== Bagua ==========
+model BaguaReading {
+  id       String @id @default(uuid())
+  userId   String
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  question    String
+  method      String
+  manualLines String  // JSON array string: "[6,8,7,9,8,7]"
+
+  primaryHexagram Int
+  primaryName     String
+  primaryPinyin   String
+  changedHexagram Int?
+  changedName     String?
+  changingLines   String  // JSON array string
+  trigramUpper    String
+  trigramLower    String
+  judgment        String
+  image           String
+  lineTexts       String  // JSON string
+
+  readingText String?
+
+  createdAt  DateTime @default(now())
+}
+
+// ========== Qi Men Dun Jia ==========
+model QimenReading {
+  id       String @id @default(uuid())
+  userId   String
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  queryDateTime String
+  method        String
+
+  juNumber   Int
+  yinYangDun String
+  palaces    String  // JSON string
+  zhiFu      String
+  zhiShi     String
+  eightDoors String  // JSON string
+  nineStars  String  // JSON string
+  eightGods  String  // JSON string
+
+  readingText String?
+
+  createdAt  DateTime @default(now())
+}
+
+// ========== Western Zodiac ==========
+model ZodiacReading {
+  id       String @id @default(uuid())
+  userId   String
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  birthDateTime String
+  longitude     Float
+  latitude      Float
+  houseSystem   String
+
+  planets    String  // JSON string
+  houses     String  // JSON string
+  ascendant  String
+  midheaven  String
+  aspects    String  // JSON string
+  elements   String  // JSON string
+  modalities String  // JSON string
+  sunSign    String
+  moonSign   String
+
+  readingText String?
+
+  createdAt  DateTime @default(now())
+}

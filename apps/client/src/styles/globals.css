@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-mystic-bg text-mystic-text-primary font-body;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-heading;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-mystic-bg;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-mystic-primary rounded-full;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-mystic-surface/70 backdrop-blur-md border border-mystic-divider/50 rounded-mystic shadow-mystic-glow;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:bg-mystic-surface-hover/70 hover:shadow-mystic-glow-lg hover:scale-[1.02];
+  }
+
+  .mystic-input {
+    @apply w-full px-4 py-3 bg-mystic-surface border border-mystic-divider rounded-mystic
+           text-mystic-text-primary placeholder-mystic-text-secondary/50
+           focus:outline-none focus:border-mystic-accent focus:shadow-accent-glow
+           transition-all duration-300 font-body;
+  }
+
+  .mystic-select {
+    @apply mystic-input appearance-none cursor-pointer;
+  }
+
+  .mystic-button-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-mystic-primary to-mystic-secondary
+           text-mystic-text-primary font-semibold rounded-mystic
+           hover:shadow-mystic-glow-lg hover:scale-[1.02]
+           active:scale-95 transition-all duration-300;
+  }
+
+  .mystic-button-outline {
+    @apply px-6 py-3 border-2 border-mystic-accent text-mystic-accent font-semibold rounded-mystic
+           hover:bg-mystic-accent/10 hover:shadow-accent-glow
+           active:scale-95 transition-all duration-300;
+  }
+
+  .mystic-button-ghost {
+    @apply px-4 py-2 text-mystic-text-secondary hover:text-mystic-text-primary
+           hover:bg-mystic-surface rounded-mystic transition-all duration-300;
+  }
+
+  .section-title {
+    @apply text-3xl font-heading font-semibold text-mystic-text-primary mb-2;
+  }
+
+  .section-subtitle {
+    @apply text-mystic-text-secondary font-body text-lg;
+  }
+
+  .reading-text {
+    @apply text-mystic-text-primary leading-relaxed whitespace-pre-line font-body;
+  }
+
+  .reading-text h2 {
+    @apply text-xl font-heading text-mystic-accent mt-6 mb-3;
+  }
+
+  .reading-text h3 {
+    @apply text-lg font-heading text-mystic-secondary mt-4 mb-2;
+  }
+
+  .reading-text strong {
+    @apply text-mystic-accent font-semibold;
+  }
+}
+
+/* Animations */
+@keyframes starField {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
+}
+
+.stars-animate {
+  animation: starField 60s linear infinite;
+}
+
+/* Scroll animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

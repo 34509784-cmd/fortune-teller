@@ -1,0 +1,14 @@
+# Railway deployment config
+# Railway auto-detects this file
+
+[phases.setup]
+nixPkgs = ["nodejs_20", "pnpm"]
+
+[phases.install]
+cmds = ["cd ../.. && pnpm install --frozen-lockfile"]
+
+[phases.build]
+cmds = ["cd ../.. && pnpm build"]
+
+[start]
+cmd = "cd /app/apps/server && NODE_ENV=production npx tsx src/index.ts"

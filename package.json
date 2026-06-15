@@ -1,0 +1,19 @@
+{
+  "name": "fortune-teller",
+  "version": "1.0.0",
+  "private": true,
+  "description": "神秘占卜 — 八卦 · 奇门遁甲 · 八字排盘 · 星座",
+  "scripts": {
+    "dev": "concurrently -n server,client -c magenta,cyan \"pnpm dev:server\" \"pnpm dev:client\"",
+    "dev:server": "pnpm --filter @fortune/server dev",
+    "dev:client": "pnpm --filter @fortune/client dev",
+    "build": "pnpm --filter @fortune/client build",
+    "start": "pnpm --filter @fortune/server start",
+    "db:push": "cd apps/server && npx prisma db push",
+    "db:generate": "cd apps/server && npx prisma generate"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  },
+  "packageManager": "pnpm@9.15.4"
+}
