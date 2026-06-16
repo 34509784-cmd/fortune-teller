@@ -2,7 +2,7 @@
  * 八卦 / I Ching Service
  * Coin toss divination and hexagram interpretation.
  */
-import type { BaguaInput, BaguaResult, HexagramData } from '@fortune/shared';
+import type { BaguaInput, BaguaResult, HexagramData } from '../../../../packages/shared/src/types/bagua';
 
 // Complete I Ching hexagram data (64 hexagrams)
 // In production, use the 'i-ching' npm package for complete data

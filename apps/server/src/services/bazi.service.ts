@@ -5,7 +5,7 @@
  * on top of lunar-typescript which provides reliable solar term and stem-branch data.
  */
 import { Lunar, Solar } from 'lunar-typescript';
-import type { BaziInput, BaziResult, Pillar, FourPillars, DaYunStep } from '@fortune/shared';
+import type { BaziInput, BaziResult, Pillar, FourPillars, DaYunStep } from '../../../../packages/shared/src/types/bazi';
 
 // Heavenly Stems and Earthly Branches
 const STEMS = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];

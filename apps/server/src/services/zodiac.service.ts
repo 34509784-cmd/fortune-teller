@@ -4,7 +4,7 @@
  * Uses standard ephemeris approximations for planetary positions.
  * For production accuracy, replace with celestine npm package.
  */
-import type { ZodiacInput, ZodiacResult, PlanetPosition, HouseCusp, Aspect } from '@fortune/shared';
+import type { ZodiacInput, ZodiacResult, PlanetPosition, HouseCusp, Aspect } from '../../../../packages/shared/src/types/zodiac';
 
 // Zodiac signs
 const SIGNS = [

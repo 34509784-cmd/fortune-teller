@@ -3,7 +3,7 @@
  * Currently uses simplified calculation.
  * For full accuracy, use Python bridge with kinqimen library.
  */
-import type { QimenInput, QimenResult, PalaceCell } from '@fortune/shared';
+import type { QimenInput, QimenResult, PalaceCell } from '../../../../packages/shared/src/types/qimen';
 
 // 九宫 directions (Luoshu order)
 const PALACE_DIRECTIONS: Record<number, string> = {
