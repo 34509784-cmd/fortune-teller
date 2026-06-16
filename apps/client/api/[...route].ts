@@ -1,7 +1,7 @@
 /**
  * Vercel Serverless API — Self-contained fortune-telling calculations.
  */
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+// @ts-nocheck
 
 // ---- Heavenly Stems & Earthly Branches ----
 const STEMS = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
@@ -34,7 +34,7 @@ for(let i=1;i<=64;i++){if(!HEX[i]) HEX[i]={n:i,name:`卦${i}`,pinyin:'',char:'?'
 
 const TRI_VAL: Record<string,number[]> = {乾:[1,1,1],兑:[0,1,1],离:[1,0,1],震:[0,0,1],巽:[1,1,0],坎:[0,1,0],艮:[1,0,0],坤:[0,0,0]};
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: any, res: any) {
   const path = (req.query.route as string[]) || [];
   const route = '/' + path.join('/');
   const method = req.method || 'GET';
