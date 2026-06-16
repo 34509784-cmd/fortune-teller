@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { baziApi } from '../api/client';
+import { calcBazi } from '../utils/fortuneEngine';
 import Loading from '../components/ui/Loading';
 
 export default function BaziInputPage() {
@@ -21,18 +21,18 @@ export default function BaziInputPage() {
     if (!form.birthDate) return;
     setLoading(true);
     try {
-      const res = await baziApi.calculate({
-        ...form,
+      // Use local engine (no backend needed!)
+      await new Promise(r => setTimeout(r, 500));
+      const data = calcBazi({
+        birthDate: form.birthDate,
+        birthTime: form.birthTime,
+        gender: form.gender,
         longitude: Number(form.longitude),
         latitude: Number(form.latitude),
       });
-      if (res.data.readingId) {
-        navigate(`/bazi/${res.data.readingId}`, { state: res.data });
-      } else {
-        navigate('/bazi/temp', { state: res.data });
-      }
+      navigate('/bazi/temp', { state: data });
     } catch (err: any) {
-      alert(err?.response?.data?.message || '计算失败，请稍后再试');
+      alert(err?.message || '计算失败');
     } finally {
       setLoading(false);
     }

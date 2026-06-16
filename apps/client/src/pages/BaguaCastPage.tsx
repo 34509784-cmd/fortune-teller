@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { baguaApi } from '../api/client';
+import { calcBagua } from '../utils/fortuneEngine';
 
 type LineResult = { value: number; label: string; symbol: string };
 
@@ -54,18 +54,15 @@ export default function BaguaCastPage() {
     if (!question.trim()) return;
     setLoading(true);
     try {
-      const res = await baguaApi.divine({
+      await new Promise(r => setTimeout(r, 500));
+      const data = calcBagua({
         question: question.trim(),
         method,
         manualLines: lines.map(l => l.value),
       });
-      if (res.data.readingId) {
-        navigate(`/bagua/${res.data.readingId}`, { state: res.data });
-      } else {
-        navigate('/bagua/temp', { state: res.data });
-      }
+      navigate('/bagua/temp', { state: data });
     } catch (err: any) {
-      alert(err?.response?.data?.message || '占卜失败');
+      alert(err?.message || '占卜失败');
     } finally {
       setLoading(false);
     }
