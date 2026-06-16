@@ -2,10 +2,14 @@
   "installCommand": "npm install",
   "buildCommand": "vite build",
   "outputDirectory": "dist",
-  "rewrites": [
-    {
-      "source": "/((?!api/).*)",
-      "destination": "/index.html"
+  "functions": {
+    "api/[...route].ts": {
+      "memory": 512,
+      "maxDuration": 10
     }
+  },
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
