@@ -4,12 +4,11 @@
   "outputDirectory": "dist",
   "functions": {
     "api/[...route].ts": {
-      "memory": 512,
-      "maxDuration": 10
+      "runtime": "nodejs20.x"
     }
   },
   "routes": [
     { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    { "src": "/.*", "dest": "/index.html" }
   ]
 }
